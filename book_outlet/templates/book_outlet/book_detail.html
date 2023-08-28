@@ -1,0 +1,29 @@
+{% extends 'book_outlet/base.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    <h2>{{author}}</h2>    
+    <p>The book has a rating of {{rating}} and 
+
+    {% if is_bestseller %}
+        and is a bestseller.
+        {% else %}
+        and is not a bestseller.
+    {% endif %}
+    </p>
+    <h3>Published Countries {{published_countries.size}}</h3>
+    {% if published_countries.count == 0 %}
+            <p>unknown</p>
+    {% else %}
+        {% for country in published_countries.all %}
+        <li>
+            {{country.name}}
+        </li>
+        {% endfor %}
+    {% endif %}
+     
+{% endblock content %}
